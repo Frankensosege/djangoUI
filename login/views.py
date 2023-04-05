@@ -18,9 +18,9 @@ def index(request):
         if user is not None:
             # redirect the user to the home page
             request.session['login_id'] = user.id
-            redirect_to = reverse('login:welcome', kwargs={'name':user.user_name})
-            # return redirect('login:welcome', {'name':user.user_name, 'login_id':user.id})
-            return HttpResponseRedirect(redirect_to)
+            # redirect_to = reverse('login:welcome', kwargs={'name':user.user_name})
+            return redirect('login:welcome', {'user':user})
+            # return HttpResponseRedirect(redirect_to)
         else:
             # display an error message
             error = 'Invalid credentials. Please try again.'
