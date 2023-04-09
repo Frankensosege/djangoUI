@@ -82,28 +82,28 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # }
 
 # postgresSQL
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'project',
-#         'USER': 'root',
-#         'PASSWORD': 'password',
-#         'HOST': 'localhost',
-#         'PORT': '',
-#     }
-# }
-
-# MySQL
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'python_sample',
-        'USER': 'host',
-        'PASSWORD': '1q2w3e4r!',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'stockanal',
+        'USER': 'stockanal',
+        'PASSWORD': 'stockanal',
         'HOST': 'localhost',
-        'PORT': '3306',
+        'PORT': '5433',
     }
 }
+
+# MySQL
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'python_sample',
+#         'USER': 'host',
+#         'PASSWORD': '1q2w3e4r!',
+#         'HOST': 'localhost',
+#         'PORT': '3306',
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
