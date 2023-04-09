@@ -1,6 +1,7 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.shortcuts import render, redirect, reverse, HttpResponseRedirect
+from django.utils import timezone
 from .models import Users
+from .forms import UsersForm
 
 # Create your views here.
 def index(request):
@@ -16,7 +17,10 @@ def index(request):
 
         if user is not None:
             # redirect the user to the home page
-            return redirect('login:welcome', name=user.user_name)
+            request.session['login_id'] = user.id
+            # redirect_to = reverse('login:welcome', kwargs={'name':user.user_name})
+            return redirect('login:welcome', {'user':user})
+            # return HttpResponseRedirect(redirect_to)
         else:
             # display an error message
             error = 'Invalid credentials. Please try again.'
@@ -27,10 +31,20 @@ def index(request):
 def home(request, name):
     error = None
     print("++++++++++++++++++++++++++++++++++++++++++++")
-    print(name)
+    print('name : ', name)
 
-    return render(request, 'login/home.html', name=name)
+    return render(request, 'login/home.html', {'name':name})
 
 def register(request):
-    print('==========================================')
-    return render(request, 'login/register.html')
+    if request.method == 'POST':
+        form = UsersForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.create_date = timezone.now()
+            user.lastupdate_date = timezone.now()
+            user.save()
+            return redirect('login:index')
+    else:
+        form = UsersForm()
+    context = {'form':form}
+    return render(request, 'login/register.html', context)

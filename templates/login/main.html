@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+<p>
+<h1> Hello</h1>
+</p>
+<h5 class="my-3 border-bottom pb-2"> Please Sign-In</h5>
+<form method="POST" id="authForm" action="{% url 'login:index' %}">
+    {% csrf_token %}
+    <div class="container my-3">
+        <table class="table">
+            <tr>
+                <td>
+                    <label for="id">아이디&nbsp&nbsp&nbsp</label>
+                </td>
+                <td>
+                    <input type="text" id="id" name="id" placeholder="id">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="pw">비밀번호</label>
+                </td>
+                <td>
+                    <input type="password" id="pw" name="pw" placeholder="pw">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" name="sign_in" value="sign in" class="btn btn-primary"/>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <p>
+        <a href="{% url 'login:register' %}" class="btn btn-primary">Sign Up</a>
+    </p>
+
+</form>
+{% endblock %}

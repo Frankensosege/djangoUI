@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'common.apps.CommonConfig',
+    'home.apps.HomeConfig',
     'login.apps.LoginConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -128,11 +130,13 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
 # LANGUAGE_CODE = 'en-us'
-LANGUAGE_CODE = 'ko'
+LANGUAGE_CODE = 'ko-kr'
 
-TIME_ZONE = 'UTC'
+# TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
+USE_L10N = True
 
 USE_TZ = True
 
@@ -149,3 +153,9 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# 로그인 성공후 이동하는 URL
+LOGIN_REDIRECT_URL = '/'
+
+# 로그아웃시 이동하는 URL
+LOGOUT_REDIRECT_URL = '/'
