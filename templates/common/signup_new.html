@@ -1,0 +1,69 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+    <title>{% block title %}Signin{% endblock %}</title>
+</head>
+<body>
+  <section class="vh-100">
+    <div class="container-fluid h-custom">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-md-9 col-lg-6 col-xl-5">
+          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+            class="img-fluid" alt="Sample image">
+        </div>
+        <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+          <form>
+            {% csrf_token %}
+            <div class="form-outline mb-3">
+              <input type="text" name="username" id="username" class="form-control form-control-lg"
+                     placeholder="Enter username" value="{{ form.username.value|default_if_none:'' }}">
+              <label class="form-label" for="username">사용자 ID</label>
+            </div>
+
+
+            <!-- Password input -->
+            <div class="form-outline mb-3">
+              <input type="password1" name="password1" id="password1" class="form-control form-control-lg"
+                placeholder="Enter password" value="{{ form.password1.value|default_if_none:'' }}"/>
+              <label class="form-label" for="password1">Password</label>
+            </div>
+
+            <div class="form-outline mb-3">
+              <input type="password2" name="password1" id="password2" class="form-control form-control-lg"
+                placeholder="Confirm password" value="{{ form.password2.value|default_if_none:'' }}"/>
+              <label class="form-label" for="password2">Password</label>
+            </div>
+
+
+                        <!-- Email input -->
+            <div class="form-outline mb-4">
+              <input type="email" name="useremail" id="useremail" class="form-control form-control-lg"
+                placeholder="Enter a valid email address" value="{{ form.useremail.value|default_if_none:'' }}"/>
+              <label class="form-label" for="useremail">Email address</label>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+    <div
+      class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
+      <!-- Copyright -->
+      <div class="text-white mb-3 mb-md-0">
+        Copyright © 2020. All rights reserved.
+      </div>
+    </div>
+  </section>
+</body>
+</html>
