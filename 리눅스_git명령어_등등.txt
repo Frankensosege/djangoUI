@@ -1,0 +1,177 @@
+---리눅스 명령어:
+clear
+ls -a : 숨김파일 표시
+   -l : long format 자세히 보기
+   -r : reverse 표시
+   -t : 시간순서
+
+chmod -c : 권한 변경
+pwd : 현재 dir
+cd c: : 루트 == /
+    ~ : Home dir
+rmdir : 디렉토리가 비어있는 경우 dir만 삭제
+rm -r : 하위 삭제
+     -f : 묻지 않고 강제 삭제
+yy : 현재 줄을 버퍼로 복사 (한 줄을 ctrl + c 한다고 생각하면 됩니다.), 5줄 복사 : 5yy
+cat : 입력을 출력
+    > 파일명 : 입력을 파일명으로 출력
+    < 파일명 : 을 출력
+    *.text > a.text 
+    파일명1 파일명2  > 새파일명
+    파일명1 >> 파일명2 : 파일명1 을 파일명2 에 덧 붙이기
+
+---vi 편집기 명령어
+ **명령 모드(command mode)
+esc : 명령어라인
+i, a : insert, append
+x : 커서가 위치한 곳의 글자 1개 삭제. (5x : 문자 5개 삭제) 
+dd: 커서가 위치한 곳의 한 줄 삭제 (삭제이지만, p로 복구가능)
+o : 현재 줄 다음 위치에 삽입 (입력모드로 넘어감)
+dw : 커서가 위치한 곳에서 부터 단어 삭제 (커서가 위치한 곳 부터 띄어쓰기 까지)
+u : 방금 한 명령 취소 (ctrl + z 라고 생각하면 됩니다)
+yy : 현재 줄을 버퍼로 복사 (한 줄을 ctrl + c 한다고 생각하면 됩니다.), 5줄 복사 : 5yy 
+p : 현재 커서가 있는 줄 바로 아래에 버퍼 내용 붙여넣기
+k : 위로! (커서가 한 줄 위로 올라감.)
+j : 아래로! (커서가 한 줄 아래로 내려감)
+l : 오른쪽으로! (커서가 한칸 우측으로감), 엘 입니다
+h : 왼쪽으로! (커서가 한칸 좌측으로감)
+0 : 커서가 있는 줄의 맨 앞으로 감 (home 키라고 생각하면 됩니다), 숫자 0(영) 입니다.
+$ : 커서가 있는 줄의 맨 뒤로 감 (end 키라고 생각하면 됩니다)
+( :  현재 문장의 처음
+) : 현재 문장의 끝
+{ : 현재 문단의 처음
+} : 현재 문단의 끝
+숫자- : 숫자 만큼 윗 줄로 이동
+숫자+ : 숫자 만큼 아래 줄로 이동
+G : 파일의 끝으로 이동., 대문자로 사용해야합니다. (Shift + g)
+r : 한 문자 변경 
+cc : 커서가 있는 그 줄의 내용 변경
+
+ **마지막 행 모드(last line mode)에서의 명령어(:으로 명령 대기)
+w : 현재 파일명으로 파일 저장. (저장만 함 꺼지지는 않음) 
+q : 걍나감
+wq : 저장하고 나감
+q! : vi 강제 종료 ( ! 가 붙으면 강제로 수행)
+wq! : 강제 저장 후 종료 ( ! 가 붙으면 강제로 수행)
+f [파일명] : 파일이름을 [파일명]으로 변경, 예시 : f abc.txt
+숫자 : 해당 라인으로 커서 이동
+$ : 파일의 맨 끝 줄로 이동
+e! : 마지막 저장 이후 모든 편집 취소
+/문자열 : 현재 커서 위치에서 부터파일 앞쪽으로 문자열 탐색
+?문자열 : - 현재 커서 위치에서 부터 파일 뒤쪽으로 문자열 탐색 
+set nu : vi 라인 번호 출력
+set nonu : vi 라인 번호 출력 취소 
+
+---git 명령어(bash)
+git status : 깃 상태 표시
+git config : 환경 설정
+              --global : 시스템 전체 적용 환경
+             git config --global user.email 'frankensosege@gmail.com'
+git init : 초기화 (깃 사용할 dir에서)
+git init 폴더명 : 깃 사용 할 폴더를 만들고 초기화 함
+git add 파일명 : stage에 올림
+git rm --cached 파일명 : stage에 올린파일 내림(처음 stage에 추가한 경우)
+git commit -m "메세지" : 리파지토리 에 "메세지"로 버전관리 생성
+git log : 리파지토리에 버전 확인
+          --stat git의 로그상태 확인
+          --oneline 한라인씩
+                       --brnches 브랜치별로
+git log --oneline --branches --graph : 그래프로
+
+git restore : 변경사항 discard 리파지토리 or stage(git restore --staged 파일명)을 수정된 파일에 옮김
+git commit -am "message 2" : 수정된 파일 바로 리파지토리로(add 없이-stage를 거치지 않음)
+git diff : 수정된 파일이 있는 경우 리파지토리의 마지막 생태와 변경내용을 확인
+git commit --amend : 마지막 커밋한 메세지 수정(vi editor로 수정함)
+
+
+작업되돌리기 : stage에서 수정한 파일
+파일 수정후 
+git restore --staged 파일명 
+git checkout -- 파일명 : 파일명 앞에 한칸 띄울 것
+git reset HEAD 파일명
+
+마지막 commit 되돌리기
+git reset HEAD^ : commit 이전, stage에 add되어 있는 상태로 되돌림
+
+특정 commit으로 되돌리기
+git reset --hard 이동하려는 commit hash : log history 가 없어짐
+git revert 이동하려는 commit hash : history 남아 있음(새로운 버전이 생김)
+
+branch 작업
+git branch : branch 확인
+git branch 새브랜치면 : 새로운 브랜치 생성
+git checkout 브랜치명 : 브랜치 이동
+git log main..apple : main branch기준 apple branch의 차이 확인
+git merge 브랜치명 : 기준 브랜치로 이동후 작업할 것
+                           conplict시 master에서 수정한 후 commit
+git branch -d 삭제할 브랜치명 
+git stash : 수정한 파일들 임시보관(commit 보류) git status확인시 수정내용이 안뜸
+git stash list : 보류된 파일 확인
+git stash pop : git stash한 파일들 하나씩 젤 위부터 꺼냄
+git stash drop : 보류내용 삭제
+git stash apply : ?
+
+깃헙으로 백업
+깃헙 repository 생성 후 최초 작업 local -> server(push)
+git remote add mygithub https://github.com/Frankensosege/git-server.git : github 서버 엘리아스(mygithub)로 원격서버 등록
+git remote -v : 등록된 원격서버 확인
+git branch -M main : 브랜치 명을 main으로 수정
+git push -u mygithub main(main 브랜치와 서버 엘리아스 로 만들어진 로컬 브랜치(main) 연결 후 git push 만 하면 됨)
+git pull : server에 올라간 내용 가져오기
+git pull origin 브랜치명
+브랜치를 만들어 (push)
+git push 서버엘리아스 브랜치명
+
+git remote remove 원격명: 원격깃헙 연결 삭제
+
+ssh 프로토콜 사용시 
+ssh-keygen -> id_rsa.pub copy -> user setting에서 ssh 키 추가 -> repository>code ssh항목에서 url 복사
+git remote add mygit-ssh git@github.com:Frankensosege/git-server.git : 로컬 깃 프로토콜 추가
+git push mygit-ssh main : 로컬깃 ssh프로토콜로 push
+
+git remote --help
+
+git clone https://github.com/Frankensosege/prj-mini.git git_home : 원격저장소(주소) 를 git_home dir로 복사
+git fetch : 브랜치확인(origin/main)
+git merge origin/main 
+
+MySQL
+X Protocall port:33060
+port:3306
+loot pwd : 1q2w3e4r!
+user : host / 1q2w3e4r!
+
+Flask 서버 start
+가상환경-> app.py 파일이있는 폴더(없는경우 set FLASK_APP=실행파일)
+flask run
+
+https://matplotlib.org/cheatsheets/
+
+colab 환경
+! cat /etc/os-release    : OS
+! pip list | wc -l          : python package
+! lscpu                     : CPU
+! free -h                   : memory
+! df -h                      : 저장공간
+! nvidia-smi               : GPU 확인
+
+Django 명령어
+1. venv 활성화
+2. project 폴더로 이동
+* 위 작업을 cmd 파일로 만들어 두는 것도 좋음
+django-admin startproject config .   : 프로젝트생성
+django-admin startproject [project name]
+django-admin startapp [app name]
+
+python manage.py startapp [app name]          : 프로젝트에 앱 추가
+python manage.py runserver          : 장고 서버 기동
+python manage.py runserver 0.0.0.0:8000 &  : 백그라운드 실행
+python manage.py makemigrations    : models.py 변경사항 적용
+python manage.py migrate              : database 연동 , models.py 수정후 데이터 매핑
+python manage.py createsuperuser   : admin 생성, db 연동후(admin)
+python ../manage.py inspectdb > models.py  : 현DB models.py에 반영
+python manage.py changepassword [user id]
+
+장고흐름
+http 호출 ->urls.py(view.py에 함수 매핑)
+
