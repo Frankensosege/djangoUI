@@ -160,6 +160,9 @@ LOGIN_REDIRECT_URL = '/'
 # 로그아웃시 이동하는 URL
 LOGOUT_REDIRECT_URL = '/'
 
+# App.Class 이름으로 지정
+AUTH_USER_MODEL = 'members.User'
+
 ACCOUNT_AUTHENTICATION_METHOD = 'emil'  # 로그인시 username이 아니라 email을 사용하게 하는 설정
 ACCOUNT_EMAIL_REQUIRED = True               # 회원 가입시 이메일을 필수항목으로 만들기
 ACCOUNT_USERNAME_REQUIRED = False        # username을 필수항목에서 제거
