@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from . import Users
 
 def signup(request):
     if request.method == "POST":
@@ -15,26 +16,26 @@ def signup(request):
     return render(request, 'common/signup.html', {'form':form})
 
 
-def login_new(request):
+def login(request):
     error = None
     if request.method == 'POST':
-        usr_id = request.POST.get('useremail')
+        usr_id = request.POST.get('username')
         pw = request.POST.get('password')
         # usr_id = request.form['id']
         # pw = request.form['pw']
 
         # query the database for the user with the given username and password
-        # user = Users.objects.get(id=usr_id, passwd=pw)
+        user = Users.objects.get(id=usr_id, passwd=pw)
 
-        # if user is not None:
-        #     # redirect the user to the home page
-        #     request.session['login_id'] = user.id
-        #     # redirect_to = reverse('login:welcome', kwargs={'name':user.user_name})
-        #     return redirect('login:welcome', {'user': user})
-        #     # return HttpResponseRedirect(redirect_to)
-        # else:
-        #     # display an error message
-        #     error = 'Invalid credentials. Please try again.'
+        if user is not None:
+            # redirect the user to the home page
+            request.session['login_id'] = user.id
+            # redirect_to = reverse('login:welcome', kwargs={'name':user.user_name})
+            return redirect('login:welcome', {'user': user})
+            # return HttpResponseRedirect(redirect_to)
+        else:
+            # display an error message
+            error = 'Invalid credentials. Please try again.'
 
         return redirect('common:welcome', {'user': usr_id})
 
