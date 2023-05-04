@@ -175,3 +175,7 @@ python manage.py changepassword [user id]
 장고흐름
 http 호출 ->urls.py(view.py에 함수 매핑)
 
+
+linux shell 명령어(bash)
+
+
